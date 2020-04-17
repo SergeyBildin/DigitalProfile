@@ -30,6 +30,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DigitalProfile\apps\login\admin.py" />
+    <Compile Include="DigitalProfile\apps\login\apps.py" />
+    <Compile Include="DigitalProfile\apps\login\migrations\__init__.py" />
+    <Compile Include="DigitalProfile\apps\login\models.py" />
+    <Compile Include="DigitalProfile\apps\login\tests.py" />
+    <Compile Include="DigitalProfile\apps\login\views.py" />
+    <Compile Include="DigitalProfile\apps\login\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="DigitalProfile\__init__.py" />
     <Compile Include="DigitalProfile\settings.py" />
@@ -37,10 +44,16 @@
     <Compile Include="DigitalProfile\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DigitalProfile\apps\login\templates\login\index.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DigitalProfile\" />
+    <Folder Include="DigitalProfile\apps\" />
+    <Folder Include="DigitalProfile\apps\login\" />
+    <Folder Include="DigitalProfile\apps\login\migrations\" />
+    <Folder Include="DigitalProfile\apps\login\templates\" />
+    <Folder Include="DigitalProfile\apps\login\templates\login\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
