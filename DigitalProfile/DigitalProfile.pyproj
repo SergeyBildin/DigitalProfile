@@ -4,6 +4,7 @@
     <Name>DigitalProfile</Name>
     <RootNamespace>DigitalProfile</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>unittest</TestFramework>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,8 +13,7 @@
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <StartupFile>manage.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>templates</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <LaunchProvider>Django launcher</LaunchProvider>
     <DjangoSettingsModule>DigitalProfile.settings</DjangoSettingsModule>
@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DigitalProfile\apps\login\templates\login\index.html" />
+    <Content Include="DigitalProfile\static\css\Styles.css" />
+    <Content Include="DigitalProfile\templates\index.html" />
+    <Content Include="DigitalProfile\templates\login\loginScreen.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +57,11 @@
     <Folder Include="DigitalProfile\apps\login\migrations\" />
     <Folder Include="DigitalProfile\apps\login\templates\" />
     <Folder Include="DigitalProfile\apps\login\templates\login\" />
+    <Folder Include="DigitalProfile\static\" />
+    <Folder Include="DigitalProfile\static\css\" />
+    <Folder Include="DigitalProfile\static\images\" />
+    <Folder Include="DigitalProfile\templates\" />
+    <Folder Include="DigitalProfile\templates\login\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
