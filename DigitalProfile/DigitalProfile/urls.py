@@ -19,10 +19,9 @@ Including another URLconf
 # Uncomment next two lines to enable admin:
 from django.contrib import admin
 from django.urls import path
-from login import views
+from django.conf.urls import include, url
 
 urlpatterns = [
-    path('', views.index,),
-    path('about', views.about),
     path('admin/', admin.site.urls),
+    path('', include('loginsys.urls'))
 ]
