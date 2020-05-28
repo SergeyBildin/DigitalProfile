@@ -29,7 +29,7 @@ SECRET_KEY = '2c7e37ed-9937-4db8-9624-9fb8b089a8fc'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = 'account.Account'
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'loginsys',
-    'user',
-
+    'account',
+    'profile',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,0 +1,16 @@
+{% extends 'register.html' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        
+        <div class="col-4 mt-4">
+            <h1>Регистрация</h1>
+            <form id="add_form" method="POST">
+                {% csrf_token %}
+                {{form}}
+                {% url 'secondReg' %}
+                <button  form = "add_form" type="submit" class="btn btn-primary mt-4" >Добавить</button>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
