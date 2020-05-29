@@ -42,8 +42,9 @@
     <body>
         <div class="topnav">
             <div class="topnav-right">
-                {% url 'login_page' as url_login_page %}
+                {% url 'login' as url_login_page %}
                 <a class="a{% if url_login_page == request.path %}-active{% endif %}" href="{{url_login_page}}">Войти</a>
+                {{ request.user }}
                 {% url 'register' as url_register_page %}
                 <a class="a{% if url_register_page == request.path %}-active{% endif %}" href="{{url_register_page}}">Регистрация</a>
             </div>
