@@ -6,7 +6,8 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from .models import Account
 from profile.models import Profile
-from profile.Parser import analysis_user, get_user_id
+from .tasks import get_user_skills
+
 
 
 def main(request):
@@ -42,10 +43,14 @@ class ProfileCreateView(CreateView):
     model = Profile
     template_name = 'secondReg.html'
     form_class = ProfileCreationForm
-    success_url = reverse_lazy('profile.html')
+    success_url = '/profile/'
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        user = Account.objects.get(email=self.object.user)
+        print(user)
+        print(user.vk_id)
+        self.object.skills = get_user_skills.delay(user.vk_id)
         self.object.save()
         return super().form_valid(form)
     

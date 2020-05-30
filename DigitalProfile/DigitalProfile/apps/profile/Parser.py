@@ -590,14 +590,20 @@ def get_user_id(url):
     url = url[url.rfind('/')+1:]
     return int(vk_api.utils.resolveScreenName(screen_name=url, v=5.103)['object_id'])
 
-if __name__ == '__main__':
-    """
-    token = "dca35078dca35078dca35078d8dcd21bcdddca3dca35078823cbbd86c8f9b80a31e49a6"
-    session = vk.Session(access_token=token)
-    vk_api = vk.API(session)
-    """    
-    session = vk.AuthSession(app_id=7424949, user_login=89088641931, user_password=_password)
-    vk_api = vk.API(session)
+session = vk.AuthSession(app_id=7424949, user_login=89088641931, user_password=_password)
+vk_api = vk.API(session)
 
-    keywords = get_keywords('keyword.txt')
-    tags = get_tags('keyword.txt')
+#keywords = get_keywords('keyword.txt')
+#tags = get_tags('keyword.txt')
+
+#if __name__ == '__main__':
+#    """
+#    token = "dca35078dca35078dca35078d8dcd21bcdddca3dca35078823cbbd86c8f9b80a31e49a6"
+ #   session = vk.Session(access_token=token)
+ #   vk_api = vk.API(session)
+ #   """    
+ #  session = vk.AuthSession(app_id=7424949, user_login=89088641931, user_password=_password)
+ #   vk_api = vk.API(session)
+
+ #   keywords = get_keywords('keyword.txt')
+  #  tags = get_tags('keyword.txt')
