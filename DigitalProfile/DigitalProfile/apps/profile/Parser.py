@@ -559,7 +559,10 @@ def analysis_user(user_id, keywords, tags):
             tagGroup_t = get_max_tag_from_list(tagGroup)
             if not tagGroup_t == None:
                 unionTags.append(tagGroup_t)
-    return set(unionTags)
+    skills = ''
+    for item in unionTags:
+        skills = skills + item + ','
+    return skills
 
 #временная функция для анализа группы студентов
 def analysis_students(path_in, path_out, keywords, tags):

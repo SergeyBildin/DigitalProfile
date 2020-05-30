@@ -48,9 +48,10 @@ class ProfileCreateView(CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         user = Account.objects.get(email=self.object.user)
-        print(user)
-        print(user.vk_id)
-        self.object.skills = get_user_skills.delay(user.vk_id)
+        #print(user)
+        #print(user.vk_id)
+        skills = get_user_skills.delay(user.email,user.vk_id) 
+        #self.object.skills = skills            
         self.object.save()
         return super().form_valid(form)
     
