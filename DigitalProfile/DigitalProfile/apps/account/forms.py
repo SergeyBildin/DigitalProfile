@@ -30,7 +30,7 @@ class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
-        exclude = ('user', 'skills')
+        exclude = ('user', 'skills','avatar')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:

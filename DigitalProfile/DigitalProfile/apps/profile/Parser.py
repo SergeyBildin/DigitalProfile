@@ -1,6 +1,6 @@
 from time import time as timer
 import time
-import vk
+import vk_api
 import re
 import random
 from selenium import webdriver
@@ -49,12 +49,12 @@ def parse(file_in, file_out, class_number=1):
 
 #Получение айдишников подписчиков группы по id
 def get_members(groupid):
-    first = vk_api.groups.getMembers(group_id=groupid, v=5.103) 
+    first = _vk_api.groups.getMembers(group_id=groupid, v=5.103) 
     data = first["items"] 
     count = first["count"] // 1000 
     for i in range(1, count+1):  
         time.sleep(0.34)
-        data = data + vk_api.groups.getMembers(group_id=groupid, v=5.103, offset=i*1000)["items"]
+        data = data + _vk_api.groups.getMembers(group_id=groupid, v=5.103, offset=i*1000)["items"]
     return data
 
 #сохранение данных в файл
@@ -254,7 +254,7 @@ def superparser(file_in, file_out):
         st = [line[17:-1] + ';']
         line = int(line[17:-1])
         try:
-            sub = vk_api.users.getSubscriptions(user_id=line, extended=1, count=30, v=5.103)
+            sub = _vk_api.users.getSubscriptions(user_id=line, extended=1, count=30, v=5.103)
         except:
             line = cin.readline()
             continue
@@ -273,11 +273,11 @@ def superparser(file_in, file_out):
 
 #получение живых подписчиков группы
 def get_true_users_count(group_id):
-    itt = vk_api.groups.getMembers(group_id=group_id, v=5.103)['count'] // 1000
+    itt = _vk_api.groups.getMembers(group_id=group_id, v=5.103)['count'] // 1000
     count = 0
     for i in range(0, itt+1):
-        data = vk_api.groups.getMembers(group_id=group_id, v=5.103, offset=i*1000)['items']
-        users = vk_api.users.get(user_ids=data, v=5.103)
+        data = _vk_api.groups.getMembers(group_id=group_id, v=5.103, offset=i*1000)['items']
+        users = _vk_api.users.get(user_ids=data, v=5.103)
         for user in users:
             try:
                 user['deactivated']
@@ -287,7 +287,7 @@ def get_true_users_count(group_id):
 
 #получение лайков, комментов, репостов и просмотров на последних count записях группы
 def get_lcrv(group_id, count):
-    res = vk_api.wall.get(domain=group_id, count=count, v=5.103)
+    res = _vk_api.wall.get(domain=group_id, count=count, v=5.103)
     resultSet = []
     for post in res['items']:
         p = []
@@ -300,13 +300,13 @@ def get_lcrv(group_id, count):
 
 def get_vm_metric(group_id, count):
     try:
-        res = vk_api.wall.get(owner_id=group_id, filter='owner', count=count, v=5.103)
+        res = _vk_api.wall.get(owner_id=group_id, filter='owner', count=count, v=5.103)
         if timer() - res['items'][0]['date'] > 7884000:
             return 0
     except:
         return 0
     time.sleep(1)
-    membersCount = vk_api.groups.getMembers(group_id=-1*group_id, v=5.103)['count']
+    membersCount = _vk_api.groups.getMembers(group_id=-1*group_id, v=5.103)['count']
     result = 0
     kof = 1 if res['count'] >= count else res['count']/count
     for post in res['items']:
@@ -320,7 +320,7 @@ def get_vm_metric(group_id, count):
 def get_lcrv_metric(group_id, count):
     time.sleep(0.6)
     try:
-        res = vk_api.wall.get(owner_id=group_id, filter='owner', count=count, v=5.103)
+        res = _vk_api.wall.get(owner_id=group_id, filter='owner', count=count, v=5.103)
         if timer() - res['items'][0]['date'] > 7884000:
             return 0
     except:
@@ -343,7 +343,7 @@ _password = 'Rustam120100!'
 #поиск групп по ключевому слову
 def search(keyword, count):
     res = []
-    groups = vk_api.groups.search(q=keyword, sort=0, count=count, v=5.9)['items']
+    groups = _vk_api.groups.search(q=keyword, sort=0, count=count, v=5.9)['items']
     stoper = 1
     tic = timer()
     for group in groups:
@@ -353,7 +353,7 @@ def search(keyword, count):
         if(stoper % 3 == 0):
             time.sleep(1)
         try:
-            count_members = vk_api.groups.getMembers(group_id=id, v=5.9)['count']
+            count_members = _vk_api.groups.getMembers(group_id=id, v=5.9)['count']
             if(count_members < 2000):
                 continue
         except:
@@ -418,7 +418,7 @@ def filter_stupid_public(string):
 def get_subscriptions(user_id, count):
     data = []
     try:
-        sub = vk_api.users.getSubscriptions(user_id=user_id, extended=1, count=count, v=5.103)['items']
+        sub = _vk_api.users.getSubscriptions(user_id=user_id, extended=1, count=count, v=5.103)['items']
         for s in sub:
             if s['type'] == 'page':
                 data.append(s['id'])
@@ -435,14 +435,14 @@ def get_tags(path):
         return [line.split(';')[1][0:-1] for line in file]
 
 def get_reposted_post_list(user_id, count):
-    posts = vk_api.wall.get(owner_id=user_id, extended=1, count=count, v=5.103)
+    posts = _vk_api.wall.get(owner_id=user_id, extended=1, count=count, v=5.103)
     groups = posts['groups']
     profiles = posts['profiles']
     data = [profile['id'] for profile in profiles], [group['id'] for group in groups]
     return data
 
 def analysis_wall(user_id, count, keywords, tags):
-    posts = vk_api.wall.get(owner_id=user_id, extended=1, count=count, v=5.103)['items']
+    posts = _vk_api.wall.get(owner_id=user_id, extended=1, count=count, v=5.103)['items']
     importantTags = []
     for post in posts:
         try:
@@ -456,7 +456,7 @@ def analysis_wall(user_id, count, keywords, tags):
     return importantTags
 
 def is_programming_public(group_id, keywords):
-    first_name = vk_api.groups.getById(group_id=group_id, v=5.103)[0]['name']
+    first_name = _vk_api.groups.getById(group_id=group_id, v=5.103)[0]['name']
     name = filter_stupid_public(first_name)
     name = normalize(name)
     tokens = name.split(' ')
@@ -467,7 +467,7 @@ def is_programming_public(group_id, keywords):
     return True if index > -1 else False
 
 def get_tags_name_group(group_id, keywords, tags):
-    first_name = vk_api.groups.getById(group_id=group_id, v=5.103)[0]['name']
+    first_name = _vk_api.groups.getById(group_id=group_id, v=5.103)[0]['name']
     name = filter_stupid_public(first_name)
     name = normalize(name)
     tokens = name.split(' ')
@@ -479,7 +479,7 @@ def get_tags_name_group(group_id, keywords, tags):
     return importantTags
 
 def get_tags_description_group(group_id, keywords, tags):
-    description = vk_api.groups.getById(group_id=group_id, fields='description', v=5.103)[0]['description']
+    description = _vk_api.groups.getById(group_id=group_id, fields='description', v=5.103)[0]['description']
     description = normalize(description)
     tokens = description.split(' ')
     importantTags = []
@@ -490,7 +490,7 @@ def get_tags_description_group(group_id, keywords, tags):
     return importantTags
 
 def get_tags_group(group_id, keywords, tags):
-    data = vk_api.groups.getById(group_id=group_id, fields='description', v=5.103)[0]
+    data = _vk_api.groups.getById(group_id=group_id, fields='description', v=5.103)[0]
     name = data['name']
     description = data['description']
     name = filter_stupid_public(name)
@@ -521,7 +521,7 @@ def get_max_tag_from_list(tagList):
 
 def get_tags_mentions(user_id, keywords, tags):
     q = '*id' + str(user_id)
-    data = vk_api.newsfeed.search(q=q, extended=1, v=5.103)
+    data = _vk_api.newsfeed.search(q=q, extended=1, v=5.103)
     posts = data['items']
     groups = data['groups']
     importantTags = []
@@ -559,10 +559,10 @@ def analysis_user(user_id, keywords, tags):
             tagGroup_t = get_max_tag_from_list(tagGroup)
             if not tagGroup_t == None:
                 unionTags.append(tagGroup_t)
-    skills = ''
-    for item in unionTags:
-        skills = skills + item + ','
-    return skills
+    #skills = ''
+    #for item in unionTags:
+        #skills = skills + item + ','
+    return unionTags
 
 #временная функция для анализа группы студентов
 def analysis_students(path_in, path_out, keywords, tags):
@@ -576,7 +576,7 @@ def analysis_students(path_in, path_out, keywords, tags):
     file_out = open(path_out, 'w', encoding='utf-8') 
     for student in students:
         try:
-            info = vk_api.users.get(user_ids=student, v=5.103)[0]
+            info = _vk_api.users.get(user_ids=student, v=5.103)[0]
             time.sleep(1)
             res = str(student) + ';'
             res += info['first_name'] + ' ' + info['last_name'] + ';'
@@ -591,10 +591,13 @@ def analysis_students(path_in, path_out, keywords, tags):
 #Получение айди пользователя по ссылке https://...
 def get_user_id(url):
     url = url[url.rfind('/')+1:]
-    return int(vk_api.utils.resolveScreenName(screen_name=url, v=5.103)['object_id'])
+    return int(_vk_api.utils.resolveScreenName(screen_name=url, v=5.103)['object_id'])
 
-session = vk.AuthSession(app_id=7424949, user_login=89088641931, user_password=_password)
-vk_api = vk.API(session)
+#session = vk.AuthSession(app_id=7491082, user_login=89088641931, user_password=_password)
+#_vk_api = vk.API(session)
+session = vk_api.VkApi(login='79088641931', password=_password)
+session.auth(reauth=True, token_only=False)
+_vk_api = session.get_api()
 
 #keywords = get_keywords('keyword.txt')
 #tags = get_tags('keyword.txt')
@@ -603,10 +606,10 @@ vk_api = vk.API(session)
 #    """
 #    token = "dca35078dca35078dca35078d8dcd21bcdddca3dca35078823cbbd86c8f9b80a31e49a6"
  #   session = vk.Session(access_token=token)
- #   vk_api = vk.API(session)
+ #   _vk_api = vk.API(session)
  #   """    
  #  session = vk.AuthSession(app_id=7424949, user_login=89088641931, user_password=_password)
- #   vk_api = vk.API(session)
+ #   __vk_api = vk.API(session)
 
  #   keywords = get_keywords('keyword.txt')
   #  tags = get_tags('keyword.txt')
