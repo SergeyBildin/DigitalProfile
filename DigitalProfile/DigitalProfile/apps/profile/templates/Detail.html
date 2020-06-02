@@ -2,212 +2,185 @@
 <html lang="en">
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <style>
-    .md-button
-    {
-      margin-top: 10px;
-      margin-left: 14px;
-    }
-    .md-form
-    {
-      margin-left: 450px;
-      margin-top: -495px;
-    }
-    .md-button1{
-      margin-top: 10px;
-    }
-    .md-avatar
-    {
-      margin-top: 15px;
-      height: 290px;
-      width: 290px;
-    }
-    .skill
-    {
-      resize: none;
-    
-    }
-    .photo
-    {
-      margin-left: 14px;
-    }</style>
-  <title>Профиль</title>
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<style>
+.md-form
+{
+margin-left: 450px;
+margin-top: -293px;
+}
+.md-button1{
+margin-top: 10px;
+}
+.md-avatar
+{
+margin-top: 15px;
+height: 290px;
+width: 290px;
+}
+.skill
+{
+resize: none;
+}
+.photo
+{
+margin-left: 14px;
+}
+</style>
+<title>Профиль</title>
+
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-4">
-          <img src="https://www.saruzhan.kz/img/no_photo.jpg" alt="Avatar" class="md-avatar">
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-           
-      </div>
-      
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-2">
-        
-  </div>
-  </div>
-    <div class="row">
-        <div class="col-2">
-            
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            
-      </div>
-    </div> 
-  </div>
-  <form class="md-form">
-  <div class="container-fluid">
-  <div class="row">
+<div class="container-fluid">
+<div class="row">
+<div class="col-4">
+<img src="https://avatars.mds.yandex.net/get-pdb/224945/f81ec2f2-52a4-43a0-badb-b1b024347392/s1200?webp=false" alt="Avatar" class="md-avatar">
+</div>
+</div>
+</div>
+<form class="md-form">
+<div class="container-fluid">
+<div class="row">
 
-    <div class="col">
-      <label for="name">{{ prof.surname }} {{ prof.name }} {{ prof.patronymic }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col">
+<label for="name">{{ prof.surname }} {{ prof.name }} {{ prof.patronymic }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-6">
-      <label for="-">----------------------------------------------------------------------------</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-6">
+<hr>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-1">
-        <label for="role">{{ prof.role }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-1">
+<label for="role">{{ prof.role }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-6">
-      <label for="-">----------------------------------------------------------------------------</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-6">
+<hr>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="dateB">Дата рождения </label>
-    </div>
-    <div class="col-1">
-      <label for="sex">Пол</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="dateB">Дата рождения </label>
+</div>
+<div class="col-1">
+<label for="sex">Пол</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="dateBNumber">{{ prof.birth_date }}</label>
-    </div>
-    <div class="col-1">
-      <label for="sex-s">{{ prof.sex }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="dateBNumber">{{ prof.birth_date }}</label>
+</div>
+<div class="col-1">
+<label for="sex-s">{{ prof.sex }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-6">
-      <label for="-">----------------------------------------------------------------------------</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-6">
+<hr>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="Information">Контактная информация</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="Information">Контактная информация</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="NumberTel">{{ prof.phone_number }}</label>
-    </div>
-    <div class="col-1">
-        <label for="Emal">{{ prof.user }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="NumberTel">{{ prof.phone_number }}</label>
+</div>
+<div class="col-1">
+<label for="Emal">{{ prof.user }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-6">
-      <label for="-">----------------------------------------------------------------------------</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-6">
+<hr>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="EducationType">Образование:</label>
-    </div>
-    <div class="col-1">
-      <label for="EducationTypeValue">Высшее</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="EducationType">Образование:</label>
+</div>
+<div class="col-1">
+<label for="EducationTypeValue">Высшее</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="University">Университет:</label>
-    </div>
-    <div class="col-1">
-      <label for="UniversityValue">{{ prof.university }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="University">Университет:</label>
+</div>
+<div class="col-1">
+<label for="UniversityValue">{{ prof.university }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="Facultet">Институт:</label>
-    </div>
-    <div class="col-1">
-      <label for="FacultetValue">{{ prof.institute }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="Facultet">Институт:</label>
+</div>
+<div class="col-1">
+<label for="FacultetValue">{{ prof.institute }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="Spec">Направление:</label>
-    </div>
-    <div class="col-1">
-      <label for="SpecValue">{{ prof.specialization }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="Spec">Направление:</label>
+</div>
+<div class="col-1">
+<label for="SpecValue">{{ prof.specialization }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-2">
-        <label for="Group">Номер группы:</label>
-    </div>
-    <div class="col-1">
-      <label for="EducationTypeValue">{{ prof.group }}</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-2">
+<label for="Group">Номер группы:</label>
+</div>
+<div class="col-1">
+<label for="EducationTypeValue">{{ prof.group }}</label>
+</div>
+</div>
+<div class="row">
 
-    <div class="col-6">
-      <label for="-">----------------------------------------------------------------------------</label>
-    </div>
-  </div>
-  <div class="row">
+<div class="col-6">
+<hr>
+</div>
+</div>
+<div class="row">
 
-    </div>
-    <div class="row">
+</div>
+<div class="row">
 
-      <div class="col-6 ">
-        <label for="skill">Ключевые навыки</label>
-        <!--rows="3" отвечает за количество строк-->
-        <textarea class="form-control skill" id="Skill" rows="3" readonly >{{ prof.skills }}</textarea>
-      </div>
-      </div>
-  </div>
+<div class="col-6 ">
+<label for="skill">Ключевые навыки</label>
+<!--rows="3" отвечает за количество строк-->
+<textarea class="form-control skill" id="Skill" rows="3"
+ 
+readonly >{{ prof.skills }}</textarea>
+</div>
+</div>
+</div>
 </div>
 </form>
-
 </body>
 </html>
