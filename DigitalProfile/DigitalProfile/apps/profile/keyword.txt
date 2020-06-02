@@ -88,7 +88,7 @@ objective-c;desktop,gamedev,mobile
 opencart;web
 opengl;desktop,gamedev
 operating;
-os;system adminisration
+os;system administration
 pascal;desktop
 pca;data science
 perceptron;data science

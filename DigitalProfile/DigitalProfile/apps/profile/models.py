@@ -1,6 +1,7 @@
 from django.db import models
 from account.models import Account
 
+#from django.contrib.auth.models import Group
 
 class Profile(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
@@ -30,5 +31,31 @@ class Profile(models.Model):
     specialization = models.CharField(verbose_name='Напрвление/специальность',max_length=200, null=True)
     group = models.CharField(verbose_name='Номер группы',max_length=50, null=True)
     skills = models.TextField(verbose_name='навыки',max_length=300, null=True)
+    skill_groups = models.ManyToManyField(
+        'Groups', 
+        through='Membership',
+        through_fields=('person', 'group'),
+        )
+    def __str__(self):
+        return self.surname + ' ' + self.name
+
+    
+
+class Groups(models.Model):
+    name = models.CharField(max_length=128)
+    members = models.ManyToManyField(
+        'Profile',        
+        through='Membership',
+        through_fields=('group', 'person'),
+    )
+    def __str__(self):
+        return self.name
+
+class Membership(models.Model):
+    group = models.ForeignKey('Groups', on_delete=models.CASCADE)
+    person = models.ForeignKey('Profile', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.person.surname + ' ' + self.person.name + '->' + self.group.name
+    
     
     

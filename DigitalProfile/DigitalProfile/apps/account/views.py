@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from account.forms import RegistrationForm, ProfileCreationForm, AuthForm
 from django.views.generic import CreateView, View, FormView
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from .models import Account
 from profile.models import Profile
@@ -18,7 +18,12 @@ def main(request):
 class AuthView(LoginView):
     template_name = 'login.html'
     form_class = AuthForm
-    success_url = reverse_lazy('profile')
+    success_url = '/profile/'
+    def get_success_url(self):
+        return self.success_url
+
+class Logout(LogoutView):
+    next_page = '/'
 
 
 class RegistrationView(FormView):

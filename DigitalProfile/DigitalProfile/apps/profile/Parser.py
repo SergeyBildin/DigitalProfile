@@ -494,6 +494,14 @@ def get_tags_group(group_id, keywords, tags):
     name = data['name']
     description = data['description']
     name = filter_stupid_public(name)
+    name = normalize(name)
+    tokens = name.split(' ')
+    for token in tokens:
+        index = binary_search(keywords, token, 0, len(keywords))
+        if index > -1:
+            break
+    if index < 0:
+        return None
     unionInfo = name + ' ' + description
     unionInfo = normalize(unionInfo)
     tokens = unionInfo.split(' ')
@@ -532,8 +540,10 @@ def get_tags_mentions(user_id, keywords, tags):
             if index > -1 and not tags[index] == "":
                 importantTags.extend(tags[index].split(','))
     for group in groups:
-        time.sleep(0.5)
-        importantTags.extend(get_tags_group(group['id'], keywords, tags))
+        time.sleep(0.4)
+        t = get_tags_group(group['id'], keywords, tags)
+        if not t == None:
+            importantTags.extend(t)
     return importantTags
 
 def smoothing(x):
@@ -553,15 +563,12 @@ def analysis_user(user_id, keywords, tags):
     if not mentions_t == None:
         unionTags.append(mentions_t)
     for sub in subscriptions:
-        time.sleep(0.8)
-        if is_programming_public(sub, keywords):
-            tagGroup = get_tags_group(sub, keywords, tags)
+        time.sleep(0.4)
+        tagGroup = get_tags_group(sub, keywords, tags)
+        if not tagGroup == None:
             tagGroup_t = get_max_tag_from_list(tagGroup)
             if not tagGroup_t == None:
                 unionTags.append(tagGroup_t)
-    #skills = ''
-    #for item in unionTags:
-        #skills = skills + item + ','
     return unionTags
 
 #временная функция для анализа группы студентов
@@ -595,8 +602,9 @@ def get_user_id(url):
 
 #session = vk.AuthSession(app_id=7491082, user_login=89088641931, user_password=_password)
 #_vk_api = vk.API(session)
-session = vk_api.VkApi(login='79088641931', password=_password)
-session.auth(reauth=True, token_only=False)
+
+session = vk_api.VkApi(login='79088641931', password=_password, scope='offline')
+session.auth(reauth=True)
 _vk_api = session.get_api()
 
 #keywords = get_keywords('keyword.txt')
