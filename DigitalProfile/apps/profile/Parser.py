@@ -600,24 +600,14 @@ def get_user_id(url):
     url = url[url.rfind('/')+1:]
     return int(_vk_api.utils.resolveScreenName(screen_name=url, v=5.103)['object_id'])
 
-#session = vk.AuthSession(app_id=7491082, user_login=89088641931, user_password=_password)
-#_vk_api = vk.API(session)
 
-#session = vk_api.VkApi(login='79088641931', password=_password, scope='offline')
-#session.auth(reauth=True)
-#_vk_api = session.get_api()
 
 #keywords = get_keywords('keyword.txt')
 #tags = get_tags('keyword.txt')
 
 #if __name__ == '__main__':
 #    """
-#    token = "dca35078dca35078dca35078d8dcd21bcdddca3dca35078823cbbd86c8f9b80a31e49a6"
- #   session = vk.Session(access_token=token)
- #   _vk_api = vk.API(session)
- #   """    
- #  session = vk.AuthSession(app_id=7424949, user_login=89088641931, user_password=_password)
- #   __vk_api = vk.API(session)
+#    
 
  #   keywords = get_keywords('keyword.txt')
   #  tags = get_tags('keyword.txt')
